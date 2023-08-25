@@ -25,6 +25,14 @@ const TodoApp = (function() {
       }
     }
   
+    function removeTask(id) {
+      const taskIndex = tasks.findIndex(task => task.id === id);
+      if (taskIndex !== -1) {
+        tasks.splice(taskIndex, 1);
+        renderTasks();
+      }
+    }
+  
     function toggleTaskCompletion(id) {
       const task = tasks.find(task => task.id === id);
       if (task) {
@@ -37,11 +45,17 @@ const TodoApp = (function() {
       taskList.innerHTML = "";
       tasks.forEach(task => {
         const taskItem = document.createElement("li");
-        taskItem.textContent = task.title;
+        taskItem.textContent = `${task.id}: ${task.title}`;
         taskItem.classList.add("task-item");
         if (task.completed) {
           taskItem.classList.add("completed");
         }
+  
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.addEventListener("click", () => removeTask(task.id));
+        
+        taskItem.appendChild(removeButton);
         taskItem.addEventListener("click", () => toggleTaskCompletion(task.id));
         taskList.appendChild(taskItem);
       });
