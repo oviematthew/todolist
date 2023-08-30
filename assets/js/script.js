@@ -52,7 +52,7 @@ const TodoApp = (function() {
         }
   
         const removeButton = document.createElement("button");
-        removeButton.textContent = "Remove";
+        removeButton.textContent = "Remove item";
         removeButton.addEventListener("click", () => removeTask(task.id));
         
         taskItem.appendChild(removeButton);
