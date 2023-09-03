@@ -5,4 +5,7 @@ body {
     flex-direction: column;
 }
 
-footer 
+footer p {
+    color: black;
+    font-size: 15px;
+}
